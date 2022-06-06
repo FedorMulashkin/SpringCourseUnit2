@@ -9,7 +9,10 @@ public class Test {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MyConfig.class);
         Employee employee = context.getBean("employee", Employee.class);
         context.close();
-        System.out.println(employee.getDepartment());
-        System.out.println(employee.getGrade());
+        /*System.out.println(employee.getDepartment());
+        System.out.println(employee.getGrade());*/
+        System.out.println(employee);
+        employee.setName("Ivan");
+        System.out.println(employee);
     }
 }
