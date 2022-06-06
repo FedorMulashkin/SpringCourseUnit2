@@ -1,13 +1,21 @@
 package org.example.person;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Person implements Comparable<Person>{
     enum Sex{
         MALE,
         FEMALE
     }
+    @Value("Fedor")
     private String name;
+    @Value("Mulashkin")
     private String surname;
+    @Value("MALE")
     private Sex sex;
+    @Value("24")
     private int age;
 
     public Person() {
