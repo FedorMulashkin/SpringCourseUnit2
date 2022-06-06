@@ -5,17 +5,25 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
 public class LoggingAspects {
-    @Before("execution(* get*())")
-    public void beforeGetAdvice(JoinPoint joinPoint){
-        System.out.println("BeforeGetAdvice for method " + joinPoint.getSignature().getName());
+    @Pointcut("execution(* get*())")
+    public void getAdvice(){}
+
+    @Pointcut("execution(* set*(..))")
+    public void setAdvice(){}
+
+    @Before("setAdvice()")
+    public void beforeSetAdvice(JoinPoint joinPoint){
+        System.out.println("BeforeSetAdvice for method " + joinPoint.getSignature().getName());
     }
 
-    @Around("execution(* set*(..))")
+    @Around("setAdvice()")
     public void aroundSetAdvice(ProceedingJoinPoint point){
         System.out.println("Before task proceeding aroundSetAdvice");
         try {
